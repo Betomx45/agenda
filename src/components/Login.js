@@ -1,76 +1,133 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import EventNoteIcon from '@mui/icons-material/EventNote';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Facebook, Google } from '@mui/icons-material';
+import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import AlertMessaje from './Alert';
+
+const MyLink = React.forwardRef((props, ref) => <RouterLink innerRef={ref} {...props} />);
+
+const useStyles = makeStyles(theme => ({
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.common.white,
+    },
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 
-const theme = createTheme();
+const Login = (props) => {
+  const classes = useStyles();
+  const auth = getAuth();
+  const [user, setUser] = useState({
+    email: '',
+    password: ''
+  });
 
-const SignIn = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
     });
   };
 
-  return (
-      <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" >
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{fontSize:30, m: 5, bgcolor: 'secondary.main' }} >
-            <EventNoteIcon/>
-          </Avatar>
-          <Typography component="h1" variant="h2">
-            Home Record
-          </Typography>
-          <Typography component="h4" variant="h4" sx={{mt:1, mb:3}}>
-            Bienvenido
-          </Typography>
-          <Typography component="h6" variant="h6" sx={{mt:1, mb:3}}>
-            Inicia sesión con:
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setErrorMessage('');
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 2, mb: 10 }}
-              startIcon={<Facebook icon={Facebook} />}
-            >
-              Facebook
-            </Button>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 0, mb: 2 }}
-              startIcon={<Google icon={Google} />}
-            >
-              Google
-            </Button>
-          </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+    signInWithEmailAndPassword(auth,user.email, user.password)
+    .then(response => {
+      props.history.push('/');
+    })
+    .catch(error => {
+      console.log(error);
+      //alert(error.message);
+      setErrorMessage(error.message);
+    });
+  };
+
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Typography component="h1" variant="h5">
+          Ingresar a Chat App
+        </Typography>
+        <form className={classes.form} onSubmit={handleLogin}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            defaultValue={user.email}
+            onChange={handleChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            defaultValue={user.password}
+            onChange={handleChange}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Ingresar
+          </Button>
+          <Grid container>
+            <Grid item>
+              <Link to="/signup" component={MyLink} variant="body2">
+                {"No tengo una cuenta"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      {errorMessage &&
+        <AlertMessaje type="error" message={errorMessage} autoclose={5000} />
+      }
+    </Container>
   );
-}
-export default SignIn;
+};
+export default withRouter(Login);
