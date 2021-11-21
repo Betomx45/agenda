@@ -1,0 +1,31 @@
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import { Switch } from '@mui/material';
+import { Typography } from '@mui/material';
+import { ListItem } from '@mui/material';
+import { ListItemText } from '@mui/material';
+import { Box } from '@mui/system';
+
+const Setting = () => {
+    return (
+        <React.Fragment>
+            <CssBaseline />
+            <Container maxWidth="sm">
+                <Typography sx={{ textAlign: 'center', fontSize: 30, fontFamily: 'Arial' }}>Configuración</Typography>
+                <Box sx={{marginTop:10}}>
+                <ListItem >
+                <ListItemText primary="Activar Recordatorio" />
+                <Switch />
+                </ListItem>
+                <ListItem >
+                <ListItemText primary="Notificar tareas finalizadas" />
+                <Switch />
+                </ListItem>
+                </Box>
+            </Container>
+        </React.Fragment>
+    );
+};
+
+export default Setting;

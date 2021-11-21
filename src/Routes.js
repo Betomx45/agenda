@@ -1,18 +1,14 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
+//componentes
+import Login from './pages/Login';
+import Setting from './pages/configuracion';
+import Demo from './pages/calendario/Calendar';
 
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Chat from './components/Chat';
-import Profile from './components/Profile';
-
-const Routes = () => (
-  <Switch>
-    <Route exact path="/" component={Chat} />
-    <Route exact path="/login" component={Login} />
-    <Route exact path="/signup" component={Signup} />
-    <Route exact path="/profile" component={Profile} />
-  </Switch>
+const Rutas = () => (
+    <Routes>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/configuracion" element={<Setting/>}/>
+        <Route path="/calendario" element={<Demo/>}/>
+    </Routes>
 );
-
-export default Routes;
+export default Rutas;
