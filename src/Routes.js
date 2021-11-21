@@ -3,6 +3,7 @@ import {Route, Routes} from 'react-router-dom';
 import Login from './pages/Login';
 import Setting from './pages/configuracion';
 import Demo from './pages/calendario/Calendar';
+import addWork from './pages/Inicio';
 
 const Rutas = () => (
     <Routes>
