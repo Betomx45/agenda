@@ -6,14 +6,14 @@ import { Typography, IconButton } from '@mui/material';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 
-const addWork = () => {
+const Home = () => {
     return (
         <React.Fragment>
             <CssBaseline />
             <Container maxWidth="sm">
-                <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} />
+                <Typography sx={{textAlign: 'center', fontSize: 30, fontFamily: 'Arial' }}>Inicio</Typography>
                 <Typography variant="body2" color="text.secondary" align="center" sx={{ marginTop: 30 }}>
-                    <IconButton sx={{ width: 50, height: 50 }}>
+                    <IconButton sx={{ width: 50, height: 50, bgcolor:'#80d8ff' }}>
                         <AddOutlinedIcon />
                     </IconButton>
                     <br />
@@ -24,4 +24,4 @@ const addWork = () => {
     );
 };
 
-export default addWork;
+export default Home;

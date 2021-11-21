@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
+import { Typography } from '@mui/material';
 import { ViewState } from '@devexpress/dx-react-scheduler';
 import {
   Scheduler,
@@ -26,11 +27,12 @@ export default class Demo extends React.PureComponent {
 
     return (
       <Paper>
+        <Typography sx={{textAlign: 'center', fontSize: 30, fontFamily: 'Arial' }}>Calendario</Typography>
         <Scheduler
           data={data}
         >
           <ViewState
-            defaultCurrentDate
+            defaultCurrentDate="2018-07-27"
           />
           <MonthView />
           <Toolbar />

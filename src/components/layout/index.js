@@ -13,7 +13,6 @@ import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { menuItems } from './menu';
-import { Add } from '@mui/icons-material';
 
 
 const drawerWidth = 240;
@@ -62,7 +61,16 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const mdTheme = createTheme();
+const mdTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#0052cc',
+    },
+    secondary: {
+      main: '#edf2ff',
+    },
+  },
+});
 
 const DashboardContent = (props) => {
   const [open, setOpen] = React.useState(true);
@@ -135,6 +143,8 @@ const DashboardContent = (props) => {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             {props.children}
+            <footer sx={{}}>
+            </footer>
           </Container>
         </Box>
       </Box>

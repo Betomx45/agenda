@@ -12,7 +12,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const theme = createTheme();
 
-const Login = (props) => {
+const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
