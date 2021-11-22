@@ -4,11 +4,6 @@ import Rutas from './Routes'
 import Layout from './components/layout';
 import { CssBaseline } from '@mui/material';
 
-
-
-
-
-
 function App() {
   return (
     <Router>
