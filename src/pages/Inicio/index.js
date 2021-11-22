@@ -17,7 +17,7 @@ const Home = () => {
                         <AddOutlinedIcon />
                     </IconButton>
                     <br />
-                    Agregar Tarea
+                    Agregar Tareas
                 </Typography>
             </Container>
         </React.Fragment>
