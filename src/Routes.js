@@ -15,7 +15,6 @@ const Rutas = () => (
         <Route path="/calendario" element={<Demo/>}/>
         <Route path="/agendar" element={<Schedule/>}/>
         <Route path="/registro" element={<Register/>}/>
-
     </Routes>
 );
 export default Rutas;
