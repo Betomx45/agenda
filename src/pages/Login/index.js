@@ -24,7 +24,6 @@ const Login = () => {
   };
 
   return (
-    <BrowserRouter>
       <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" >
         <CssBaseline />
@@ -71,8 +70,7 @@ const Login = () => {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider> 
-  </BrowserRouter>     
+    </ThemeProvider>      
   );
 }
 export default Login;
