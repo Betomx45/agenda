@@ -1,5 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
-//componentes
+//pages
 import Login from './pages/Login';
 import Setting from './pages/configuracion';
 import Demo from './pages/calendario/Calendar';
@@ -15,7 +15,6 @@ const Rutas = () => (
         <Route path="/calendario" element={<Demo/>}/>
         <Route path="/agendar" element={<Schedule/>}/>
         <Route path="/registro" element={<Register/>}/>
-
     </Routes>
 );
 export default Rutas;

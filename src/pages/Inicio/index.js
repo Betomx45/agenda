@@ -1,9 +1,35 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { Typography, IconButton } from '@mui/material';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import { DataGrid } from "@mui/x-data-grid";
+
+const columns = [
+    {
+      field: 'fullName',
+      headerName: 'Lista de tareas',
+      sortable: false,
+      width: 250,
+      valueGetter: (params) =>
+        `${params.getValue(params.id, 'name') || ''} ${
+          params.getValue(params.id, 'lastname') || ''
+        }`,
+    },
+      {
+        field: 'company',
+        headerName: 'Checkout',
+        width: 220,
+      },
+      {
+          field: "id", headerName: "Status", with: 150,
+          renderCell: (data) => (
+            <IconButton color="primary" aria-label="Eliminar" component="span">
+          <DeleteIcon />
+          </IconButton>
+          )
+      }
+  ]; 
 
 
 const Home = () => {
@@ -34,6 +60,7 @@ const Home = () => {
                 </Grid>
             </Grid>
         </Paper>
+
                 <Typography variant="body2" color="text.secondary" align="center" sx={{ marginTop: 30 }}>
                     <IconButton sx={{ width: 50, height: 50, bgcolor:'#80d8ff' }}>
                         <AddOutlinedIcon />
