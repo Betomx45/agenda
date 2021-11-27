@@ -4,6 +4,8 @@ import Grid from "@mui/material/Grid";
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import { DataGrid } from "@mui/x-data-grid";
+import Typography from '@mui/material/Typography';
+import { CssBaseline } from '@mui/material';
 
 const columns = [
     {
@@ -36,8 +38,7 @@ const Home = () => {
   
     return (
         <React.Fragment>
-            <CssBaseline />
-            <Container maxWidth="sm">
+            <CssBaseline/>
                 <Typography sx={{textAlign: 'center', fontSize: 30, fontFamily: 'Arial' }}>Inicio</Typography>
                 <Paper
         sx={{
@@ -61,15 +62,6 @@ const Home = () => {
                 </Grid>
             </Grid>
         </Paper>
-
-                <Typography variant="body2" color="text.secondary" align="center" sx={{ marginTop: 30 }}>
-                    <IconButton sx={{ width: 50, height: 50, bgcolor:'#80d8ff' }}>
-                        <AddOutlinedIcon />
-                    </IconButton>
-                    <br />
-                    Agregar Tareas
-                </Typography>
-            </Container>
         </React.Fragment>
     );
 };
