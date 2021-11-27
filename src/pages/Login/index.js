@@ -9,6 +9,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Facebook, Google, Schedule } from '@mui/icons-material';
 import { BrowserRouter } from 'react-router-dom';
 
+import { GoogleLogin } from 'react-google-login';
+
 
 const theme = createTheme();
 
@@ -23,8 +25,14 @@ const Login = () => {
     });
   };
 
+  const responseGoogle = (response) => {
+    console.log(response);
+  }
+
+  
+
   return (
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" >
         <CssBaseline />
         <Box
@@ -35,16 +43,16 @@ const Login = () => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{fontSize:30, m: 5, bgcolor: 'secondary.main', width:100, height:100 }} >
-            <Schedule/>
+          <Avatar sx={{ fontSize: 30, m: 5, bgcolor: 'secondary.main', width: 100, height: 100 }} >
+            <Schedule />
           </Avatar>
           <Typography component="h1" variant="h2">
             Home Record
           </Typography>
-          <Typography component="h4" variant="h4" sx={{mt:1, mb:3}}>
+          <Typography component="h4" variant="h4" sx={{ mt: 1, mb: 3 }}>
             Bienvenido
           </Typography>
-          <Typography component="h6" variant="h6" sx={{mt:1, mb:3}}>
+          <Typography component="h6" variant="h6" sx={{ mt: 1, mb: 3 }}>
             Inicia sesión con:
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -59,18 +67,22 @@ const Login = () => {
               Facebook
             </Button>
             <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 0, mb: 2 }}
-              startIcon={<Google icon={Google} />}
+                            type="submit"
+                            fullWidth
+                            sx={{ mt: 0, mb: 2 }}
             >
-              Google
+            <GoogleLogin
+              clientId="1021593475191-hj8ur1fd2rik41djl67p8go8566j61ek.apps.googleusercontent.com"
+              buttonText="Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            />
             </Button>
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>      
+    </ThemeProvider>
   );
 }
 export default Login;
