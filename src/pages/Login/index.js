@@ -53,7 +53,7 @@ const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 2, mb: 10 }}
+              sx={{ mt: 2, mb: 5 }}
               startIcon={<Facebook icon={Facebook} />}
             >
               Facebook
