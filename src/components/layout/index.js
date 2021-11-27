@@ -13,6 +13,13 @@ import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { menuItems } from './menu';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBulletedRounded';
+import ScheduleRoundedIcon from '@mui/icons-material/ScheduleRounded';
+import EventNoteRoundedIcon from '@mui/icons-material/EventNoteRounded';
+import { Link } from 'react-router-dom';
 
 
 const drawerWidth = 240;
@@ -64,10 +71,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme({
   palette: {
     primary: {
-      main: '#0052cc',
+      main: '#2c387e',
     },
     secondary: {
-      main: '#edf2ff',
+      main: '#2a3eb1',
     },
   },
 });
@@ -141,13 +148,44 @@ const DashboardContent = (props) => {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, height: '100vh' }}>
             {props.children}
-            <footer sx={{}}>
-            </footer>
           </Container>
         </Box>
       </Box>
+      <Box>
+            <BottomNavigation
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                background: '#2c387e'
+              }} >
+              <BottomNavigationAction
+                label="Recents"
+                value="recents"
+                icon={<HomeRoundedIcon />}
+                to="/" component={Link}
+              />
+              <BottomNavigationAction
+                label="Favorites"
+                value="favorites"
+                icon={<FormatListBulletedRoundedIcon />}
+                to="/registro" component={Link}
+              />
+              <BottomNavigationAction
+                label="Nearby"
+                value="nearby"
+                icon={<ScheduleRoundedIcon />}
+                to="/agendar" component={Link}
+              />
+              <BottomNavigationAction
+                label="Folder"
+                value="folder"
+                icon={<EventNoteRoundedIcon />}
+                to="/calendario" component={Link}
+              />
+            </BottomNavigation>
+          </Box>
     </ThemeProvider>
   );
 }

@@ -10,7 +10,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 
 export const menuItems = (
-  <div>
+  <div >
     <ListItem to="/configuracion" component={Link}>
       <Avatar sx={{textAlign:'center'}}/>
     </ListItem>
