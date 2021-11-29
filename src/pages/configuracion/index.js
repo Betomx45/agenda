@@ -12,7 +12,7 @@ const Setting = () => {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Container maxWidth="sm">
+            <Container maxWidth="sm" sx={{minHeight: 530,}}>
                 <Typography sx={{ textAlign: 'center', fontSize: 30, fontFamily: 'Arial' }}>Configuración</Typography>
                 <Box sx={{marginTop:10}}>
                 <ListItem >

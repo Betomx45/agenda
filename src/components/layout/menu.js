@@ -9,6 +9,7 @@ import { Box } from '@mui/system';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 
+
 export const menuItems = (
   <div >
     <ListItem to="/configuracion" component={Link}>
