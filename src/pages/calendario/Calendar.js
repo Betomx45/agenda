@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
+import Paper from "@mui/material/Paper";
+import Container from '@mui/material/Container';
 import { Typography } from '@mui/material';
 import { ViewState } from '@devexpress/dx-react-scheduler';
 import {
@@ -26,7 +27,8 @@ export default class Demo extends React.PureComponent {
     const { data } = this.state;
 
     return (
-      <Paper>
+      <Container maxWidth="lg" sx={{minHeight: 530,}}>
+        <Paper>
         <Typography sx={{textAlign: 'center', fontSize: 30, fontFamily: 'Arial' }}>Calendario</Typography>
         <Scheduler
           data={data}
@@ -41,6 +43,7 @@ export default class Demo extends React.PureComponent {
           <Appointments />
         </Scheduler>
       </Paper>
+      </Container>
     );
   }
 }

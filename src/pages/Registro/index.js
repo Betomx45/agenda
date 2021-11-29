@@ -35,7 +35,7 @@ const Register = () => {
     return(
         <Paper
         sx={{
-            p: 3,
+            p: 2,
         }}
         >
             <Grid container spacing={3}>

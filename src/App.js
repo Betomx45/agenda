@@ -7,9 +7,9 @@ import { CssBaseline } from '@mui/material';
 function App() {
   return (
     <Router>
-      <CssBaseline/>
+      <CssBaseline />
       <Layout>
-        <Rutas/>
+        <Rutas />
       </Layout>
     </Router>
   );

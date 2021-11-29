@@ -10,6 +10,9 @@ import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import { Button } from '@material-ui/core';
 import InputLabel from '@mui/material/InputLabel';
+import SaveIcon from '@mui/icons-material/Save';
+import CancelIcon from '@mui/icons-material/Cancel';
+
 
 const Schedule = () => {
   const [age, setAge] = React.useState('');
@@ -24,12 +27,12 @@ const Schedule = () => {
         <Typography sx={{ textAlign: 'center', fontSize: 30, fontFamily: 'Arial' }}>Agendar</Typography>
         <Box sx={{ marginTop: 10 }}>
           <Stack component="form" noValidate spacing={3}>
-          <TextField fullWidth label="Nombre de la tarea:" id="fullWidth" />
+            <TextField fullWidth label="Nombre de la tarea:" id="fullWidth" />
             <TextField
               id="date"
               label="Fecha de inicio:"
               type="date"
-              sx={{ width: 550}}
+              sx={{ width: 550 }}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -38,28 +41,35 @@ const Schedule = () => {
               id="date"
               label="Finalizar:"
               type="date"
-              sx={{ width: 550}}
+              sx={{ width: 550 }}
               InputLabelProps={{
                 shrink: true,
               }}
             />
             <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Seleccionar</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          label="Seleccionar"
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Siempre</MenuItem>
-          <MenuItem value={20}>Nunca</MenuItem>
-        </Select>
-      </FormControl>
+              <InputLabel id="demo-simple-select-label">Seleccionar</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={age}
+                label="Seleccionar"
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>Siempre</MenuItem>
+                <MenuItem value={20}>Nunca</MenuItem>
+              </Select>
+            </FormControl>
           </Stack>
-          <Box sx={{marginTop:8, display:'flex', justifyContent:'space-between'}}>
-          <Button variant="contained" >Cancelar</Button>
-          <Button variant="contained">Guardar</Button>
+          <Box sx={{ marginTop: 5, display: 'flex', justifyContent: 'space-between' }}>
+            <Button
+              variant="contained"
+              color= "#899d73"
+              startIcon={<CancelIcon />}
+            >Cancelar
+            </Button>
+            <Button color="secondary"
+              startIcon={<SaveIcon />}
+              variant="contained">Guardar</Button>
           </Box>
         </Box>
       </Container>

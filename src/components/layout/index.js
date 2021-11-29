@@ -87,7 +87,7 @@ const DashboardContent = (props) => {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
@@ -148,12 +148,9 @@ const DashboardContent = (props) => {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, height: '100vh' }}>
+          <Container maxWidth="lg" sx={{ mt: 2, mb: 2}}>
             {props.children}
-          </Container>
-        </Box>
-      </Box>
-      <Box>
+            <Box sx={{marginTop:3}}>
             <BottomNavigation
               sx={{
                 display: 'flex',
@@ -186,6 +183,9 @@ const DashboardContent = (props) => {
               />
             </BottomNavigation>
           </Box>
+          </Container>
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 }
