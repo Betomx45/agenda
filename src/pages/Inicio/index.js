@@ -1,113 +1,163 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import PropTypes from 'prop-types';
+import SwipeableViews from 'react-swipeable-views';
+import { useTheme } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Zoom from '@mui/material/Zoom';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import UpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { green } from '@mui/material/colors';
+import Box from '@mui/material/Box';
+import { Container } from '@mui/material';
 
-function Copyright(props) {
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`action-tabpanel-${index}`}
+      aria-labelledby={`action-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </Typography>
   );
 }
 
-const theme = createTheme();
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
 
-const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+function a11yProps(index) {
+  return {
+    id: `action-tab-${index}`,
+    'aria-controls': `action-tabpanel-${index}`,
+  };
+}
+
+const fabStyle = {
+  position: 'absolute',
+  bottom: 16,
+  right: 16,
+};
+
+const fabGreenStyle = {
+  color: 'common.white',
+  bgcolor: green[500],
+  '&:hover': {
+    bgcolor: green[600],
+  },
+};
+
+const Home = () => {
+
+  const theme = useTheme();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
+  const handleChangeIndex = (index) => {
+    setValue(index);
+  };
+
+  const transitionDuration = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
+  const fabs = [
+    {
+      color: 'primary',
+      sx: fabStyle,
+      icon: <AddIcon />,
+      label: 'Add',
+    },
+    {
+      color: 'secondary',
+      sx: fabStyle,
+      icon: <EditIcon />,
+      label: 'Edit',
+    },
+    {
+      color: 'inherit',
+      sx: { ...fabStyle, ...fabGreenStyle },
+      icon: <UpIcon />,
+      label: 'Expand',
+    },
+  ];
+
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
+    <Container maxWidth="sm">
+      <Typography sx={{ textAlign: 'center', fontSize: 30, fontFamily: 'Arial' }}>Inicio</Typography>
+      <Box
+      sx={{
+        marginTop:2,
+        bgcolor: 'background.paper',
+        width: 500,
+        position: 'relative',
+        minHeight: 530,
+      }}
+    >
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          aria-label="action tabs example"
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+          <Tab label="Tareas por hacer" {...a11yProps(0)} />
+          <Tab label="Tareas pendientes" {...a11yProps(1)} />
+          <Tab label="Tareas finalizadas" {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={value}
+        onChangeIndex={handleChangeIndex}
+      >
+        <TabPanel value={value} index={0} dir={theme.direction}>
+          Tarea de Programación
+        </TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+        Tarea de Ingles
+        </TabPanel>
+        <TabPanel value={value} index={2} dir={theme.direction}>
+          Tarea de Quimica
+        </TabPanel>
+      </SwipeableViews>
+      {fabs.map((fab, index) => (
+        <Zoom
+          key={fab.color}
+          in={value === index}
+          timeout={transitionDuration}
+          style={{
+            transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
+          }}
+          unmountOnExit
+        >
+          <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
+            {fab.icon}
+          </Fab>
+        </Zoom>
+      ))}
+    </Box>
+
+    </Container>
   );
 };
 
-export default Login;
+export default Home;
