@@ -36,19 +36,10 @@ const Login = () => {
             Inicia sesión con:
           </Typography>
           <Box component="form"  sx={{ mt: 0 }}>
-            <Button
-              type="submit"
-              sx={{ mt: 0, mb: 2 }}
-            >
               <ButtonFacebook/>
-            </Button>
+    
             <br/>
-            <Button
-              type="submit"
-              sx={{ mt: 0, mb: 2 }}
-            >
               <Buttons/>
-            </Button>
           </Box>
         </Box>
     </ThemeProvider>
