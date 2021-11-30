@@ -150,39 +150,6 @@ const DashboardContent = (props) => {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 2, mb: 2}}>
             {props.children}
-            <Box sx={{marginTop:3}}>
-            <BottomNavigation
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                background: '#2c387e'
-              }} >
-              <BottomNavigationAction
-                label="Recents"
-                value="recents"
-                icon={<HomeRoundedIcon />}
-                to="/" component={Link}
-              />
-              <BottomNavigationAction
-                label="Favorites"
-                value="favorites"
-                icon={<FormatListBulletedRoundedIcon />}
-                to="/registro" component={Link}
-              />
-              <BottomNavigationAction
-                label="Nearby"
-                value="nearby"
-                icon={<ScheduleRoundedIcon />}
-                to="/agendar" component={Link}
-              />
-              <BottomNavigationAction
-                label="Folder"
-                value="folder"
-                icon={<EventNoteRoundedIcon />}
-                to="/calendario" component={Link}
-              />
-            </BottomNavigation>
-          </Box>
           </Container>
         </Box>
       </Box>
